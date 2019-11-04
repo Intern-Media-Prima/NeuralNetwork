@@ -19,7 +19,7 @@ class Matrix {
 	static __nbyn_operation__(m1, m2, operation){
 		if(!(Matrix.__require_matrix__(m1, 1).rows === Matrix.__require_matrix__(m2, 2).rows && m1.cols === m2.cols))
 			throw new Error("Operation error: Dimension unmatched!");
-		return new Matrix(m1.rows, m1.cols).map(operation);
+		return new Matrix(m1.rows, m1.cols).map((_, i, j) => operation(m1.data[i][j], m2.data[i][j]));
 	}
 	static add(m1, m2){
 		return Matrix.__nbyn_operation__(m1, m2, (a, b) => a + b);
